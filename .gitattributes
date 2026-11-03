@@ -1,0 +1,10 @@
+*.sh text eol=lf
+*.mjs text eol=lf
+*.js text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+assets/official/*.svg -text
+*.py text eol=lf
+deploy/atlas-activate text eol=lf
+deploy/atlas-upload text eol=lf

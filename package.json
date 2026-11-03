@@ -1,0 +1,79 @@
+{
+  "name": "atlas-self-hosted",
+  "version": "0.5.0",
+  "description": "Self-hosted Atlas browser with a built-in Wisp relay",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NuzProjects/Atlas.git"
+  },
+  "author": "MercuryWorkshop",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/NuzProjects/Atlas/issues"
+  },
+  "homepage": "https://github.com/NuzProjects/Atlas#readme",
+  "main": "./src/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "require": "./dist/wisp-full.cjs"
+    },
+    "./client": {
+      "import": "./src/entrypoints/client.mjs",
+      "require": "./dist/wisp-client.cjs"
+    },
+    "./server": {
+      "import": "./src/entrypoints/server.mjs",
+      "require": "./dist/wisp-server.cjs"
+    }
+  },
+  "browser": {
+    ".": "./src/index.mjs",
+    "./client": "./src/entrypoints/client.mjs",
+    "./server": "./src/entrypoints/server.mjs",
+    "./src/compat.mjs": "./src/compat_browser.mjs"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "build": "webpack",
+    "build:prod": "webpack --mode=production",
+    "dev": "webpack --watch",
+    "server_cli": "node ./src/bin/server_cli.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify:deploy": "node deploy/health.mjs",
+    "lint": "eslint ."
+  },
+  "bin": {
+    "wisp-js-server": "src/bin/server_cli.mjs"
+  },
+  "dependencies": {
+    "@mercuryworkshop/bare-mux": "2.1.9",
+    "@mercuryworkshop/epoxy-transport": "2.1.29",
+    "@mercuryworkshop/scramjet": "1.1.0",
+    "@titaniumnetwork-dev/ultraviolet": "3.2.10",
+    "bufferutil": "^4.1.0",
+    "commander": "^15.0.0",
+    "eruda": "^3.4.3",
+    "ipaddr.js": "^2.5.0",
+    "ws": "^8.21.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@noble/ciphers": "2.4.0",
+    "babel-loader": "^10.1.1",
+    "eslint": "10.12.0",
+    "playwright": "1.64.0",
+    "webpack": "^5.110.3",
+    "webpack-cli": "^7.2.3"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=24 <25"
+  }
+}

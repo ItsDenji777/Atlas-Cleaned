@@ -1,0 +1,9 @@
+{
+  "khan-academy": {"title":"Khan Academy","pageSource":"https://www.khanacademy.org/","titleVerification":"Official page retrieved through web browser search on 2026-10-09; direct fetch returned Client Challenge."},
+  "whatsapp": {"title":"WhatsApp Web","pageSource":"https://web.whatsapp.com/","titleVerification":"Official page retrieved through web browser search on 2026-10-09."},
+  "ebay": {"title":"Electronics, Cars, Fashion, Collectibles & More | eBay","pageSource":"https://www.ebay.com/","titleVerification":"Official page retrieved through web browser search on 2026-10-09."},
+  "neal-fun": {"title":"Neal.fun","pageSource":"https://neal.fun/","titleVerification":"Official page retrieved through web browser search on 2026-10-09."},
+  "canva": {"title":"Canva: Visual Suite for Everyone","pageSource":"https://www.canva.com/","titleVerification":"Official page retrieved through web browser search on 2026-10-09."},
+  "codepen": {"title":"CodePen – Online Code Editor For Building & Deploying Websites","pageSource":"https://codepen.io/","titleVerification":"Official page retrieved through web browser search on 2026-10-09."},
+  "stack-overflow": {"title":"Newest Questions - Stack Overflow","pageSource":"https://stackoverflow.com/questions","titleVerification":"Official homepage redirects to questions; retrieved through web browser search on 2026-10-09."}
+}

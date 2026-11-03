@@ -1,0 +1,379 @@
+[
+  {
+    "name": "YouTube",
+    "url": "https://www.youtube.com",
+    "id": "youtube",
+    "slug": "youtube",
+    "domain": "www.youtube.com",
+    "icon": "/assets/official/youtube.png?v=502b2fa1f09e"
+  },
+  {
+    "name": "Facebook",
+    "url": "https://www.facebook.com",
+    "id": "facebook",
+    "slug": "facebook",
+    "domain": "www.facebook.com",
+    "icon": "/assets/official/facebook.ico?v=8924f44d7642"
+  },
+  {
+    "name": "WhatsApp",
+    "url": "https://web.whatsapp.com",
+    "id": "whatsapp",
+    "slug": "whatsapp",
+    "domain": "web.whatsapp.com",
+    "icon": "/assets/official/whatsapp.ico?v=e6b77d832661"
+  },
+  {
+    "name": "X",
+    "url": "https://x.com",
+    "id": "twitter",
+    "slug": "x",
+    "domain": "x.com",
+    "icon": "/assets/official/twitter.ico?v=cc4939af5d16"
+  },
+  {
+    "name": "Wikipedia",
+    "url": "https://www.wikipedia.org",
+    "id": "wikipedia",
+    "slug": "wikipedia",
+    "domain": "www.wikipedia.org",
+    "icon": "/assets/official/wikipedia.ico?v=3638de612268"
+  },
+  {
+    "name": "TikTok",
+    "url": "https://www.tiktok.com",
+    "id": "tiktok",
+    "slug": "tiktok",
+    "domain": "www.tiktok.com",
+    "icon": "/assets/official/tiktok.ico?v=d0d48654b838"
+  },
+  {
+    "name": "Amazon",
+    "url": "https://www.amazon.com",
+    "id": "amazon",
+    "slug": "amazon",
+    "domain": "www.amazon.com",
+    "icon": "/assets/official/amazon.ico?v=5866636f1876"
+  },
+  {
+    "name": "Netflix",
+    "url": "https://www.netflix.com",
+    "id": "netflix",
+    "slug": "netflix",
+    "domain": "www.netflix.com",
+    "icon": "/assets/official/netflix.ico?v=9c5f7722c5df"
+  },
+  {
+    "name": "Telegram",
+    "url": "https://web.telegram.org",
+    "id": "telegram",
+    "slug": "telegram",
+    "domain": "web.telegram.org",
+    "icon": "/assets/official/telegram.svg?v=a462f1c5333e"
+  },
+  {
+    "name": "Pinterest",
+    "url": "https://www.pinterest.com",
+    "id": "pinterest",
+    "slug": "pinterest",
+    "domain": "www.pinterest.com",
+    "icon": "/assets/official/pinterest.png?v=33b3f3b72287"
+  },
+  {
+    "name": "Spotify",
+    "url": "https://open.spotify.com",
+    "id": "spotify",
+    "slug": "spotify",
+    "domain": "open.spotify.com",
+    "icon": "/assets/official/spotify.png?v=b64ecc030dcc"
+  },
+  {
+    "name": "Twitch",
+    "url": "https://www.twitch.tv",
+    "id": "twitch",
+    "slug": "twitch",
+    "domain": "www.twitch.tv",
+    "icon": "/assets/official/twitch.png?v=4d87b8e63982"
+  },
+  {
+    "name": "eBay",
+    "url": "https://www.ebay.com",
+    "id": "ebay",
+    "slug": "ebay",
+    "domain": "www.ebay.com",
+    "icon": "/assets/official/ebay.ico?v=042bedf53233"
+  },
+  {
+    "name": "Disney+",
+    "url": "https://www.disneyplus.com",
+    "id": "disney",
+    "slug": "disneyplus",
+    "domain": "www.disneyplus.com",
+    "icon": "/assets/official/disney.png?v=1a8bc05e6e9a"
+  },
+  {
+    "name": "SoundCloud",
+    "url": "https://soundcloud.com",
+    "id": "soundcloud",
+    "slug": "soundcloud",
+    "domain": "soundcloud.com",
+    "icon": "/assets/official/soundcloud.ico?v=adb156306b97"
+  },
+  {
+    "name": "Paramount+",
+    "url": "https://www.paramountplus.com",
+    "id": "paramount",
+    "slug": "paramountplus",
+    "domain": "www.paramountplus.com",
+    "icon": "/assets/official/paramount.ico?v=2eb242f1a744"
+  },
+  {
+    "name": "ESPN",
+    "url": "https://www.espn.com",
+    "id": "espn",
+    "slug": "espn",
+    "domain": "www.espn.com",
+    "icon": "/assets/official/espn.ico?v=ed2fcce111f7"
+  },
+  {
+    "name": "HBO Max",
+    "url": "https://www.hbomax.com",
+    "id": "max",
+    "slug": null,
+    "domain": "www.hbomax.com",
+    "icon": "/assets/official/max.png?v=930793156bba"
+  },
+  {
+    "name": "Hulu",
+    "url": "https://www.hulu.com",
+    "id": "hulu",
+    "slug": "hulu",
+    "domain": "www.hulu.com",
+    "icon": "/assets/official/hulu.png?v=d0f842712b25"
+  },
+  {
+    "name": "Discord",
+    "url": "https://discord.com/app",
+    "id": "discord",
+    "slug": "discord",
+    "domain": "discord.com",
+    "icon": "/assets/official/discord.ico?v=128e20b3b15c"
+  },
+  {
+    "name": "Reddit",
+    "url": "https://www.reddit.com",
+    "id": "reddit",
+    "slug": "reddit",
+    "domain": "www.reddit.com",
+    "icon": "/assets/official/reddit.png?v=f60ae5a33ee8"
+  },
+  {
+    "name": "GitHub",
+    "url": "https://github.com",
+    "id": "github",
+    "slug": "github",
+    "domain": "github.com",
+    "icon": "/assets/official/github.svg?v=aaefddf5fb6f"
+  },
+  {
+    "name": "Instagram",
+    "url": "https://www.instagram.com",
+    "id": "instagram",
+    "slug": "instagram",
+    "domain": "www.instagram.com",
+    "icon": "/assets/official/instagram.webp?v=5ea73220ab5b"
+  },
+  {
+    "name": "Google",
+    "url": "https://www.google.com",
+    "id": "google",
+    "slug": "google",
+    "domain": "www.google.com",
+    "icon": "/assets/official/google.ico?v=8720df457a93"
+  },
+  {
+    "name": "Gmail",
+    "url": "https://mail.google.com",
+    "id": "gmail",
+    "slug": "gmail",
+    "domain": "mail.google.com",
+    "icon": "/assets/official/gmail.ico?v=2a5c83dd7f46"
+  },
+  {
+    "name": "Outlook",
+    "url": "https://outlook.live.com",
+    "id": "outlook",
+    "slug": "microsoftoutlook",
+    "domain": "outlook.live.com",
+    "icon": "/assets/official/outlook.ico?v=4296d6875e5f"
+  },
+  {
+    "name": "CoolMathGames",
+    "url": "https://www.coolmathgames.com",
+    "id": "coolmathgames",
+    "slug": null,
+    "domain": "www.coolmathgames.com",
+    "icon": "/assets/official/coolmathgames.ico?v=a3fb24403ad8"
+  },
+  {
+    "name": "Neal.fun",
+    "url": "https://neal.fun",
+    "id": "neal-fun",
+    "slug": null,
+    "domain": "neal.fun",
+    "icon": "/assets/apps/neal-fun.svg"
+  },
+  {
+    "name": "CrazyGames",
+    "url": "https://www.crazygames.com",
+    "id": "crazygames",
+    "slug": null,
+    "domain": "www.crazygames.com",
+    "icon": "/assets/official/crazygames.png?v=bb5492eaa45a"
+  },
+  {
+    "name": "GeForce NOW",
+    "url": "https://play.geforcenow.com",
+    "id": "geforce-now",
+    "slug": "nvidia",
+    "domain": "play.geforcenow.com",
+    "icon": "/assets/official/geforce-now.png?v=c283fac3aaea"
+  },
+  {
+    "name": "nowgg.fun",
+    "url": "https://nowgg.fun",
+    "id": "nowgg-fun",
+    "slug": null,
+    "domain": "nowgg.fun",
+    "icon": "/assets/official/nowgg-fun.png?v=ac9f56424e70",
+    "iconSource": "https://prismusercontent.com/discord/icons/975549006841270312/e9ff61d52de82290ec944f9a202cecd2.png?size=512"
+  },
+  {
+    "name": "FMHY.net",
+    "url": "https://fmhy.net",
+    "id": "fmhy-net",
+    "slug": null,
+    "domain": "fmhy.net",
+    "icon": "/assets/official/fmhy-net.png?v=be7a0901366b"
+  },
+  {
+    "name": "Canva",
+    "url": "https://www.canva.com",
+    "id": "canva",
+    "slug": "canva",
+    "domain": "www.canva.com",
+    "icon": "/assets/official/canva.ico?v=ec2fbad47e59"
+  },
+  {
+    "name": "Figma",
+    "url": "https://www.figma.com",
+    "id": "figma",
+    "slug": "figma",
+    "domain": "www.figma.com",
+    "icon": "/assets/official/figma.svg?v=e6227b7dbc49"
+  },
+  {
+    "name": "Notion",
+    "url": "https://www.notion.so",
+    "id": "notion",
+    "slug": "notion",
+    "domain": "www.notion.so",
+    "icon": "/assets/official/notion.ico?v=541fc85f92e3"
+  },
+  {
+    "name": "Stack Overflow",
+    "url": "https://stackoverflow.com",
+    "id": "stack-overflow",
+    "slug": "stackoverflow",
+    "domain": "stackoverflow.com",
+    "icon": "/assets/official/stack-overflow.ico?v=1fb72fef0a06"
+  },
+  {
+    "name": "CodePen",
+    "url": "https://codepen.io",
+    "id": "codepen",
+    "slug": "codepen",
+    "domain": "codepen.io",
+    "icon": "/assets/official/codepen.ico?v=9deb62963708"
+  },
+  {
+    "name": "Replit",
+    "url": "https://replit.com",
+    "id": "replit",
+    "slug": "replit",
+    "domain": "replit.com",
+    "icon": "/assets/official/replit.png?v=cbd9fa5be81f"
+  },
+  {
+    "name": "MDN Web Docs",
+    "url": "https://developer.mozilla.org",
+    "id": "mdn-web-docs",
+    "slug": "mdnwebdocs",
+    "domain": "developer.mozilla.org",
+    "icon": "/assets/official/mdn-web-docs.svg?v=77b58351b9f5"
+  },
+  {
+    "name": "Khan Academy",
+    "url": "https://www.khanacademy.org",
+    "id": "khan-academy",
+    "slug": "khanacademy",
+    "domain": "www.khanacademy.org",
+    "icon": "/assets/official/khan-academy.ico?v=64228aa99b47"
+  },
+  {
+    "name": "Desmos",
+    "url": "https://www.desmos.com/calculator",
+    "id": "desmos",
+    "slug": "desmos",
+    "domain": "www.desmos.com",
+    "icon": "/assets/official/desmos.ico?v=44553532334c"
+  },
+  {
+    "name": "Chess.com",
+    "url": "https://www.chess.com",
+    "id": "chess-com",
+    "slug": "chessdotcom",
+    "domain": "www.chess.com",
+    "icon": "/assets/official/chess-com.svg?v=8d5b394ca52b"
+  },
+  {
+    "name": "Duolingo",
+    "url": "https://www.duolingo.com",
+    "id": "duolingo",
+    "slug": "duolingo",
+    "domain": "www.duolingo.com",
+    "icon": "/assets/official/duolingo.ico?v=587ed3e3a94f"
+  },
+  {
+    "name": "Proton Mail",
+    "url": "https://mail.proton.me",
+    "id": "proton-mail",
+    "slug": "protonmail",
+    "domain": "mail.proton.me",
+    "icon": "/assets/official/proton-mail.ico?v=a88a9719264f"
+  },
+  {
+    "name": "Internet Archive",
+    "url": "https://archive.org",
+    "id": "internet-archive",
+    "slug": "internetarchive",
+    "domain": "archive.org",
+    "icon": "/assets/official/internet-archive.ico?v=abac83a6e681"
+  },
+  {
+    "name": "Photopea",
+    "url": "https://www.photopea.com",
+    "id": "photopea",
+    "slug": "photopea",
+    "domain": "www.photopea.com",
+    "icon": "/assets/official/photopea.png?v=827ae434531b"
+  },
+  {
+    "name": "Zoom",
+    "url": "https://zoom.us",
+    "id": "zoom",
+    "slug": "zoom",
+    "domain": "zoom.us",
+    "icon": "/assets/official/zoom.ico?v=58b6fee1a883"
+  }
+]

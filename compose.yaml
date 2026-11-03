@@ -1,0 +1,40 @@
+services:
+  atlas:
+    build: .
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 8080
+      PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:-}"
+      ATLAS_CONTENT_MODE: shared
+      WISP_ALLOW_PRIVATE_IPS: "false"
+      ENABLE_IPV4_MIRROR: "false"
+    ports:
+      - "127.0.0.1:${ATLAS_PORT:-8080}:8080"
+    volumes:
+      - atlas-data:/app/.cache
+    init: true
+    security_opt:
+      - no-new-privileges:true
+  caddy:
+    image: caddy:2-alpine
+    profiles: [https]
+    restart: unless-stopped
+    depends_on:
+      atlas:
+        condition: service_healthy
+    environment:
+      ATLAS_DOMAIN: "${ATLAS_DOMAIN:-localhost}"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+volumes:
+  atlas-data:
+  caddy-data:
+  caddy-config:

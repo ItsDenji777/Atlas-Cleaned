@@ -1,0 +1,30 @@
+name: Self-hosted deployment checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check && npm run lint && npm test && npm run build:prod
+      - run: npx playwright install --with-deps chromium
+      - run: docker compose config --quiet && docker compose up -d --build --wait
+      - run: node --input-type=module -e "import {healthCheck} from './deploy/health.mjs'; await healthCheck('http://localhost:8080',{production:true});"
+      - run: node scripts/check-self-hosted.mjs http://localhost:8080
+      - run: docker compose --profile https config --quiet
+      - run: docker compose --profile https run --rm --no-deps caddy caddy validate --config /etc/caddy/Caddyfile
+      - name: Container logs on failure
+        if: failure()
+        run: docker compose logs --tail=100
+      - name: Stop deployment
+        if: always()
+        run: docker compose --profile https down
