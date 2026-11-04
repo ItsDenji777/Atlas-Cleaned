@@ -1,6 +1,4 @@
 (() => {
-  // Match words, not substrings such as "Sussex" or "analysis". Ordinary
-  // medical/educational language alone is not a reason to block a page.
   function classify(value) {
     const text = String(value).normalize('NFKC').toLowerCase().replace(/[\u200b-\u200f\u2060\ufeff]/g,'').replace(/\s+/g,' ');
     const direct = /\b(?:(?:watch|free|stream|download|hd|hardcore)\s+(?:hd\s+)?porn(?:ography)?|porn(?:ographic)?\s+(?:videos?|movies?|clips?|tube|cams?)|live\s+sex\s+(?:cams?|shows?|chat)|(?:nude|naked)\s+(?:cams?|webcams?)|xxx\s+(?:videos?|movies?|porn)|hentai\s+(?:porn|videos?))\b/;
@@ -53,7 +51,7 @@
           return;
         }
         for (const frame of document.querySelectorAll('iframe')) {
-          try { if (frame.getClientRects().length && getComputedStyle(frame).visibility !== 'hidden' && frame.contentDocument) pending.push(frame.contentDocument); } catch { /* Opaque frame. */ }
+          try { if (frame.getClientRects().length && getComputedStyle(frame).visibility !== 'hidden' && frame.contentDocument) pending.push(frame.contentDocument); } catch { }
         }
       }
       for (const [document,observer] of documents) if (!current.has(document)) {
@@ -79,7 +77,7 @@
       try {
         const document = frame.contentDocument;
         if (document && !document.querySelector('meta[name="atlas-content-blocked"]')) cleanup = observeDocument(document,onBlocked);
-      } catch { /* Isolated pages run their own copy and notify the parent. */ }
+      } catch { }
     };
     const observer = new MutationObserver(refresh);
     observer.observe(frame,{attributes:true,attributeFilter:['class','style','hidden']});

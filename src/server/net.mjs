@@ -3,9 +3,6 @@ import { AsyncQueue } from "../websocket.mjs";
 import { options } from "./options.mjs";
 import { net, dgram, dns } from "../compat.mjs";
 
-
-
-
 export const is_node = (typeof process !== "undefined");
 
 const dns_cache = new Map();
@@ -18,8 +15,6 @@ export function assert_on_node() {
     throw new Error("not running on node.js");
   }
 }
-
-
 
 function resolve4(hostname) {
   return resolver.resolve4(hostname);
@@ -36,7 +31,6 @@ async function resolve_with_fallback(resolve_first, resolve_after, hostname) {
   }
 }
 
-
 async function perform_lookup(hostname) {
 
   if (options.dns_method === "lookup") {
@@ -44,11 +38,9 @@ async function perform_lookup(hostname) {
     return result.address;
   }
 
-
   else if (options.dns_method === "resolve") {
 
     if (!resolver) resolver = new dns.Resolver();
-
 
     if (options.dns_servers !== dns_servers) {
       resolver.setServers(options.dns_servers || []);
@@ -63,14 +55,12 @@ async function perform_lookup(hostname) {
       throw new Error("Invalid result order. options.dns_result_order must be either 'ipv6first', 'ipv4first', or 'verbatim'.");
   }
 
-
   else if (typeof options.dns_method === "function") {
     return await options.dns_method(hostname);
   }
 
   throw new Error("Invalid DNS method. options.dns_method must either be 'lookup' or 'resolve'.");
 }
-
 
 export async function lookup_ip(hostname) {
   if (!is_node) {
@@ -107,7 +97,6 @@ export async function lookup_ip(hostname) {
   dns_pending.set(hostname, pending);
   return pending;
 }
-
 
 export class NodeTCPSocket {
   constructor(hostname, port) {

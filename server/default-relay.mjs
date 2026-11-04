@@ -1,7 +1,5 @@
 import WebSocket, {WebSocketServer} from 'ws';
 
-// Forward only server-configured relays. Browser headers, cookies and credentials
-// never leave Atlas; Wisp packets and negotiated extensions remain unchanged.
 export function createDefaultRelayGateway(target, fallbackTarget) {
   const server = new WebSocketServer({noServer:true, maxPayload:1048576, perMessageDeflate:false,
     handleProtocols:(_protocols,req)=>req.atlasRelayProtocol || false});
@@ -34,8 +32,6 @@ export function createDefaultRelayGateway(target, fallbackTarget) {
           failed = true;
           if (opened) { close(); return; }
           if (isFallback || !fallbackTarget || fallbackTarget === target) {
-            // Finish this attempt instead of retrying either relay indefinitely.
-            // A later user retry should get a fresh primary/fallback attempt.
             retryPrimaryAt = 0;
             if (!socket.destroyed && socket.writable) {
               const message = 'Atlas could not connect to either Wisp server. Reload this tab to retry.';
@@ -43,8 +39,6 @@ export function createDefaultRelayGateway(target, fallbackTarget) {
             }
             close(); return;
           }
-          // Switch only before accepting the browser connection. Established
-          // Wisp sessions cannot be moved or replayed onto another server.
           retryPrimaryAt = Date.now() + 30000;
           candidate.terminate();
           connect(fallbackTarget, true);

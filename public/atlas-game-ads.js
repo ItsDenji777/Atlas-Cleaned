@@ -8,9 +8,6 @@
     const policy = {blockAds, pending: false};
     const requestAd = sdk.requestAd;
     sdk.requestAd = function(...args) {
-      // Use the SDK's failure path: resume the game without granting an ad reward.
-      // In particular, do not start an interstitial and leave it awaiting a
-      // blocked provider's callback between matches.
       const error = this.registered_events?.adError;
       if (!policy.blockAds() || typeof error !== 'function') return Reflect.apply(requestAd, this, args);
       if (policy.pending) return;
@@ -35,7 +32,7 @@
           document?.addEventListener('load', refresh, true);
         }
         if (document?.defaultView) install(document.defaultView, blockAds);
-      } catch { /* Opaque content has no parent-accessible SDK. */ }
+      } catch { }
     };
     frame.addEventListener('load', refresh);
     refresh();

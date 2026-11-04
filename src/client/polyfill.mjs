@@ -1,8 +1,6 @@
 import { global_this } from "../compat.mjs";
 import { ClientConnection } from "./connection.mjs";
 
-
-
 const RealCloseEvent = (global_this.CloseEvent || Event);
 export const _wisp_connections = {};
 
@@ -20,14 +18,12 @@ export class WispWebSocket extends EventTarget {
     this.stream = null;
     this.connection = null;
 
-
     this.onopen = null;
     this.onmessage = null;
     this.onclose = null;
     this.onerror = null;
 
     this._ready_state = this.CONNECTING;
-
 
     let url_split = this.url.split("/");
     let wsproxy_path = url_split.pop().split(":");

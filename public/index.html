@@ -14,8 +14,6 @@
         const launch=window.parent.__atlasBlankLaunch;
         if(launch && new URL(launch.url).origin===window.location.origin && typeof launch.token==='string') {
           window.__atlasBlankBoot={url:launch.url,token:launch.token,session:launch.session,embedded:true};
-          // Keep Atlas preferences/history in the wrapper's persistent storage.
-          // The credentialless app frame has a separate browser storage context.
           const preferences=window.parent.localStorage, storage=window.localStorage;
           const transportKey=key=>String(key).startsWith('bare-mux-');
           for(let index=0;index<preferences.length;index++) {
@@ -112,7 +110,6 @@
       user-select: none;
     }
 
-
     .grid-bg {
       background-color: var(--bg);
       background-image:
@@ -120,7 +117,6 @@
         linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
       background-size: 38px 38px;
     }
-
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -136,7 +132,6 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
 
     #homeView {
       width: 100%;
@@ -156,7 +151,6 @@
       display: flex;
       align-items: center;
     }
-
 
     .settings-cog-btn {
       background: transparent;
@@ -305,7 +299,6 @@
       .welcome-title { font-size: 38px; }
     }
 
-
     #browserView {
       display: none;
       width: 100%;
@@ -314,7 +307,6 @@
       background: var(--bg);
       position: relative;
     }
-
 
     .tab-bar {
       height: 44px;
@@ -339,7 +331,6 @@
       overflow: visible;
       padding: 0 2px;
     }
-
 
     .tab-item {
       display: inline-flex;
@@ -396,7 +387,6 @@
       transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.18s ease, color 0.18s ease !important;
     }
 
-
     @keyframes tabOpenAnim {
       0% {
         opacity: 0;
@@ -427,7 +417,6 @@
       animation: tabCloseAnim 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       pointer-events: none;
     }
-
 
     @keyframes tabContentSwitch {
       0% {
@@ -502,7 +491,6 @@
       cursor: default;
     }
 
-
     .tab-item.tab-compact {
       padding: 0 4px;
       justify-content: center;
@@ -518,7 +506,6 @@
       display: none;
     }
 
-
     .tab-item.tab-compact:hover .tab-icon {
       display: none !important;
     }
@@ -531,7 +518,6 @@
       height: 18px;
       margin: auto !important;
     }
-
 
     .tab-close {
       display: inline-flex;
@@ -566,7 +552,6 @@
       height: 13.5px;
       fill: currentColor;
     }
-
 
     .new-tab-btn {
       width: 32px;
@@ -603,7 +588,6 @@
       height: 15px;
     }
 
-
     .browser-body {
       flex: 1;
       display: flex;
@@ -612,7 +596,6 @@
       position: relative;
       overflow: hidden;
     }
-
 
     .viewport-container {
       flex: 1;
@@ -626,7 +609,6 @@
       isolation: isolate;
       transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.3s ease;
     }
-
 
     #browserView.bottom-bar-hidden .viewport-container {
       height: calc(100% - 14px);
@@ -659,7 +641,6 @@
       display: block !important;
       animation: tabFadeSwitch 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
 
     .new-tab-screen {
       display: none;
@@ -725,7 +706,6 @@
       background: #202630 !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
     }
-
 
     @keyframes suggestionsFadeIn {
       from {
@@ -974,7 +954,6 @@
       visibility: visible;
     }
 
-
     .shortcut-remove-btn:hover {
       background: #e53e3e !important;
       border: none !important;
@@ -988,7 +967,6 @@
       color: #ffffff !important;
       transform: none !important;
     }
-
 
     .loader-overlay {
       position: absolute;
@@ -1023,7 +1001,6 @@
       animation: spin 0.85s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
 
-
     .bottom-bar {
       position: absolute;
       bottom: 8px;
@@ -1046,7 +1023,6 @@
       pointer-events: auto;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
     }
-
 
     .bottom-bar-hide-btn {
       position: absolute;
@@ -1082,7 +1058,6 @@
     .bottom-bar-hide-btn:hover svg {
       transform: none !important;
     }
-
 
     .bottom-bar-reveal-btn {
       position: absolute;
@@ -1260,7 +1235,6 @@
       text-align: center;
     }
 
-
     .site-info-backdrop {
       position: fixed;
       inset: 0;
@@ -1272,7 +1246,6 @@
     .site-info-backdrop.active {
       display: block;
     }
-
 
     .site-info-popup {
       position: absolute;
@@ -1540,7 +1513,6 @@
       height: 14px;
     }
 
-
     .site-info-cookies-subview {
       display: flex;
       flex-direction: column;
@@ -1617,7 +1589,6 @@
       margin-top: 1px;
       font-family: var(--font-rounded) !important;
     }
-
 
     .clean-switch {
       position: relative;
@@ -1724,7 +1695,6 @@
       margin-top: 1px;
       font-family: var(--font-rounded) !important;
     }
-
 
     .site-info-ondevice-subview {
       display: flex;
@@ -1901,7 +1871,6 @@
       font-family: var(--font-rounded) !important;
     }
 
-
     .nav-buttons {
       display: flex;
       align-items: center;
@@ -1938,7 +1907,6 @@
       width: 15px;
       height: 15px;
     }
-
 
     .modal-backdrop {
       position: fixed;
@@ -2078,7 +2046,6 @@
       transform: scale(0.97);
     }
 
-
     #wssModal .modal-btn.primary {
       background: #0284c7 !important;
       border: none !important;
@@ -2115,7 +2082,6 @@
       to { transform: rotate(360deg); }
     }
 
-
     #addShortcutModal .modal-btn.primary {
       background: #2a3340 !important;
       border: none !important;
@@ -2126,7 +2092,6 @@
     #addShortcutModal .modal-btn.primary:hover {
       background: #333d4d !important;
     }
-
 
     .progress-btn {
       position: relative;
@@ -2213,7 +2178,6 @@
       height: 15px;
     }
 
-
     #settingsView {
       width: 100vw;
       height: 100vh;
@@ -2233,7 +2197,6 @@
       gap: 20px;
       overflow: hidden;
     }
-
 
     .settings-sidebar {
       width: 240px;
@@ -2317,7 +2280,6 @@
       height: 18px;
       flex-shrink: 0;
     }
-
 
     .settings-content-pane {
       flex: 1;
@@ -2469,9 +2431,6 @@
 <script defer src="/atlas-tooltips.js"></script></head>
 <body class="grid-bg">
 
-
-
-
   <div id="homeView">
     <div class="home-content">
       <h1 class="welcome-title">Welcome to <span class="atlas-wordmark"><img src="/assets/atlas.png" alt="" class="atlas-welcome-icon" />Atlas</span></h1>
@@ -2498,7 +2457,6 @@
     </div>
 
   </div>
-
 
   <div id="settingsView" style="display: none;">
     <div class="settings-window">
@@ -2533,14 +2491,12 @@
         </div>
       </div>
 
-
       <div class="settings-content-pane">
         <div class="settings-section-title" id="settingsSectionTitle">Privacy</div>
         <div class="settings-cards-container" id="settingsCardsContainer"></div>
       </div>
     </div>
   </div>
-
 
   <div id="browserView">
     <div class="site-info-backdrop" id="siteInfoBackdrop"></div>
@@ -2551,7 +2507,6 @@
       </button>
     </div>
 
-
     <div class="browser-body">
 
       <div class="viewport-container" id="viewportContainer">
@@ -2559,7 +2514,6 @@
         <div class="loader-overlay" id="loaderOverlay">
           <div class="custom-spinner"></div>
         </div>
-
 
         <div class="new-tab-screen" id="newTabScreen">
           <div class="new-tab-title">New Tab</div>
@@ -2593,14 +2547,12 @@
       </div>
     </div>
 
-
     <div class="bottom-bar-hover-zone" aria-hidden="true"></div>
     <button class="bottom-bar-reveal-btn" id="revealBottomBarBtn" aria-label="Show browser bar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
     </button>
-
 
     <div class="bottom-bar" id="bottomBar">
 
@@ -2633,13 +2585,11 @@
           spellcheck="false"
         />
 
-
         <button class="address-action-btn star-btn right" id="bookmarkBtn" aria-label="Bookmark page">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
         </button>
-
 
         <div class="site-info-popup" id="siteInfoPopup">
           <div class="site-info-header" id="siteInfoHeader">
@@ -2677,7 +2627,6 @@
               </div>
             </div>
 
-
             <div class="site-info-item" id="siteInfoBlockAdsRow">
               <div class="site-info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.91 11.12c0 4.89-3.55 9.47-8.4 10.81c-.33.09-.69.09-1.02 0c-4.85-1.34-8.4-5.92-8.4-10.81V6.73c0-.82.62-1.75 1.39-2.06l5.57-2.28c1.25-.51 2.66-.51 3.91 0l5.57 2.28c.76.31 1.39 1.24 1.39 2.06z"/></svg>
               </div>
@@ -2696,7 +2645,6 @@
                 </div>
               </div>
             </div>
-
 
             <div class="site-info-item" id="siteInfoFingerprintRow">
               <div class="site-info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" stroke="none"><path d="M5.813 3.923a8.75 8.75 0 0 1 11.656-.644a.75.75 0 0 1-.938 1.171A7.25 7.25 0 0 0 4.75 10.11V17a.75.75 0 0 1-1.5 0v-6.89a8.75 8.75 0 0 1 2.563-6.187"/><path d="M8.641 6.641A4.75 4.75 0 0 1 16.75 10v8.11A4.75 4.75 0 0 1 12 22.86a.75.75 0 0 1 0-1.5a3.25 3.25 0 0 0 3.25-3.25V10a3.25 3.25 0 1 0-6.5 0v1.11a.75.75 0 0 1-1.5 0V10c0-1.26.5-2.468 1.391-3.359m10.918.743a.75.75 0 0 1 .913.538c.183.709.278 1.444.278 2.188v8a.75.75 0 0 1-1.5 0v-8c0-.617-.079-1.226-.23-1.813a.75.75 0 0 1 .538-.913"/><path d="M12 9.25a.75.75 0 0 1 .75.75v8.11a.75.75 0 0 1-1.5 0V10a.75.75 0 0 1 .75-.75m-4 5.61a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75"/></g></svg>
@@ -2717,7 +2665,6 @@
               </div>
             </div>
 
-
             <div class="site-info-item" id="siteInfoCookiesRow">
               <div class="site-info-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -2734,7 +2681,6 @@
               </div>
             </div>
           </div>
-
 
           <div class="site-info-cookies-subview" id="siteInfoCookiesSubview" style="display: none;">
             <div class="cookies-subview-desc">
@@ -2789,7 +2735,6 @@
             </div>
           </div>
 
-
           <div class="site-info-ondevice-subview" id="siteInfoOnDeviceSubview" style="display: none;">
             <div class="ondevice-site-section">
               <div class="ondevice-section-title">Data from the site you're visiting</div>
@@ -2830,7 +2775,6 @@
     </div>
   </div>
 
-
   <div class="modal-backdrop" id="addShortcutModal">
     <div class="modal-card">
       <div class="modal-title-row">
@@ -2868,7 +2812,6 @@
     </div>
   </div>
 
-
   <div class="home-bottom-dock" id="homeBottomDock">
     <time class="atlas-dock-clock" id="atlasDockClock" aria-label="Local time">--:--:--</time>
     <span class="atlas-dock-divider" aria-hidden="true"></span>
@@ -2902,7 +2845,6 @@
       localStorage.setItem('atlas_wisp_default_version', 'atlas-self-hosted-1');
     }
     let activeWss = localStorage.getItem("wisp_server_url") || defaultLocalWisp;
-
 
     const homeView = document.getElementById("homeView");
     const browserView = document.getElementById("browserView");
@@ -2965,7 +2907,6 @@
     const hideBottomBarBtn = document.getElementById("hideBottomBarBtn");
     const revealBottomBarBtn = document.getElementById("revealBottomBarBtn");
 
-
     const siteInfoBtn = document.getElementById("siteInfoBtn");
     const bookmarkBtn = document.getElementById("bookmarkBtn");
     const siteInfoPopup = document.getElementById("siteInfoPopup");
@@ -2990,7 +2931,6 @@
     const thirdPartyCookieToggle = document.getElementById("thirdPartyCookieToggle");
     const thirdPartyCookieStatus = document.getElementById("thirdPartyCookieStatus");
     const siteDataAllowedText = document.getElementById("siteDataAllowedText");
-
 
     function isNewTabUrl(url) {
       if (!url) return true;
@@ -3084,7 +3024,6 @@
         return "";
       }
     }
-
 
     const MAX_TABS = 10;
     let tabs = [];
@@ -3552,7 +3491,6 @@
         tab.title = `${input} at ${engine.name}`;
       }
 
-
       const previousVisit = typeof atlasHistoryEntries === 'function' ? atlasHistoryEntries().find(entry=>entry.url===finalUrl) : null;
       tab.favicon = atlasSiteFavicons.get(finalUrl) || previousVisit?.favicon || null;
       atlasRememberNavigation(tab,finalUrl);
@@ -3873,7 +3811,6 @@
       bottomAddressBar.blur();
     }
 
-
     homeSearchInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && !e.isComposing) {
         submitHomeSearch(homeSearchInput.value);
@@ -3924,7 +3861,6 @@
     };
 
     bottomHomeBtn.onclick = returnToHome;
-
 
     const MAX_SHORTCUTS = 10;
     const DEFAULT_SHORTCUTS = [
@@ -4014,7 +3950,6 @@
         const content = document.createDocumentFragment();
         row.dataset.shortcutCount = String(shortcuts.length);
 
-
         shortcuts.forEach(sc => {
           if (oldCards.has(sc.id)) { content.append(oldCards.get(sc.id)); return; }
           const card = document.createElement("div");
@@ -4060,7 +3995,6 @@
 
               targetIdx = atlasShortcutTarget(cardRects, cardRect.left + cardRect.width / 2 + dx, cardRect.top + cardRect.height / 2 + dy);
 
-
               for (let i = 0; i < cardCount; i++) {
                 if (i === initialIdx) continue;
                 const other = allCards[i];
@@ -4083,7 +4017,6 @@
                   const fromIdx = shortcuts.findIndex(s => s.id === sc.id);
                   if (fromIdx >= 0) { const [moved] = shortcuts.splice(fromIdx, 1); shortcuts.splice(targetIdx, 0, moved); saveShortcuts(); }
                 }
-
 
                 renderShortcuts().finally(() => { isDraggingShortcut = false; });
               } else if (!cancelled) {
@@ -4286,7 +4219,6 @@
       if (e.key === "Escape") closeAddShortcutModal();
     });
 
-
     function updateBookmarkStar() {
       if (!bookmarkBtn) return;
       const currentTab = tabs.find(t => t.id === activeTabId);
@@ -4353,7 +4285,6 @@
         }
       };
     }
-
 
     let currentSiteInfoView = "main";
     let siteInfoTransitionGeneration = 0;
@@ -4767,9 +4698,7 @@
       };
     }
 
-
     renderShortcuts();
-
 
     navReload.onclick = () => {
       const currentTab = tabs.find(t => t.id === activeTabId);
@@ -4800,7 +4729,6 @@
       }
     };
 
-
     hideBottomBarBtn.onclick = () => {
       browserView.classList.add("bottom-bar-hidden");
     };
@@ -4809,10 +4737,8 @@
       browserView.classList.remove("bottom-bar-hidden");
     };
 
-
     window.addEventListener("message", (e) => {
       if (!tabs.some(tab => tab.iframe?.contentWindow === e.source)) return;
-
 
       try {
         if (!window.__atlasConfig.proxyOriginTemplate) {
@@ -4881,7 +4807,6 @@
         }
       }
 
-
       if (e.data && e.data.type === "__network_doc_title" && e.data.title) {
         const cleanTitle = e.data.title.trim();
         if (cleanTitle) {
@@ -4910,7 +4835,6 @@
         } catch {                                               }
       }
 
-
       if (e.data && e.data.type === "__network_nav_url" && e.data.url) {
         const cleanUrl = e.data.url.trim();
         if (cleanUrl) {
@@ -4931,9 +4855,6 @@
         }
       }
     });
-
-
-
 
     const settingsView = document.getElementById("settingsView");
     const homeBottomDock = document.getElementById("homeBottomDock");
@@ -5030,11 +4951,9 @@
       };
     }
 
-
     if (bottomHomeBtn) {
       bottomHomeBtn.onclick = () => switchView("home");
     }
-
 
     function atlasRestoreRoute() {
       const p = atlasAppURL().pathname;

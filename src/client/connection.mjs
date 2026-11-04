@@ -62,7 +62,6 @@ class ClientStream {
     }
   }
 
-
   continue_received(buffer_size) {
     if (buffer_size > 65536) throw new Error('Invalid Wisp flow-control credit');
     this.buffer_size = buffer_size;
@@ -73,7 +72,6 @@ class ClientStream {
       this.send(data);
     }
   }
-
 
   close(reason = 0x01) {
     if (!this.open) return;
@@ -297,7 +295,6 @@ export class ClientConnection {
     const stream = new ClientStream(hostname, port, this.ws, this, stream_id, stream_type, this.max_buffer_size);
     this.active_streams[stream_id] = stream;
     stream.open = this.connected;
-
 
     const packet = new WispPacket({
       type: packet_types.CONNECT,

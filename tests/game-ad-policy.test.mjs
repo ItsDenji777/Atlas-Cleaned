@@ -16,13 +16,13 @@ test('blocked between-match ads release the game on every attempt without starti
   const sdk = {registered_events: {
     adError() { waiting = false; focus = true; failures++; },
     adFinished() { rewards++; }
-  }, requestAd() { starts++; /* A blocked ad provider never completes. */ }};
+  }, requestAd() { starts++; }};
   const root = {WinterpixelAds: sdk};
   assert.equal(policy.install(root, () => true), true);
   for (let match = 0; match < 5; match++) {
     waiting = true; focus = false;
     sdk.requestAd('midgame');
-    sdk.requestAd('midgame'); // Repeated Enter during the same pending request.
+    sdk.requestAd('midgame');
     await tick();
     assert.equal(waiting, false); assert.equal(focus, true);
   }

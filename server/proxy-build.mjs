@@ -2,7 +2,6 @@ import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import path from 'node:path';
 
-
 export function buildInfo(root) {
   try {
     const info=JSON.parse(readFileSync(path.join(root,'build-info.json'),'utf8'));

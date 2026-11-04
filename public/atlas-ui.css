@@ -484,7 +484,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 .atlas-history-panel,.atlas-history-list{scrollbar-width:none!important}.atlas-history-panel::-webkit-scrollbar,.atlas-history-list::-webkit-scrollbar{display:none;width:0;height:0;background:transparent}
 
-/* Keep the bottom URL control and its collapse handle visually borderless. */
+
 #browserView #bottomBar,
 #browserView #bottomBar .bottom-address-wrapper,
 #browserView #bottomBar .bottom-address-bar,
@@ -499,7 +499,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: none !important;
 }
 
-/* The visible collapse handle shares the viewport's fine outline, without reintroducing the bottom address bar border. */
+
 #browserView.bottom-bar-hidden .bottom-bar-reveal-btn {
   border: 1px solid rgba(255,255,255,.09) !important;
   border-bottom: 0 !important;
@@ -508,7 +508,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   box-sizing: border-box;
 }
 
-/* Keep site controls anchored to the address field while content expands. */
+
 .site-info-popup { box-sizing: border-box; width: 334px; padding: 12px; transform-origin: bottom left; overflow-x: hidden; }
 .site-info-header { position: relative; min-height: 20px; padding: 8px 10px; gap: 12px; align-items: center; }
 .site-info-header-titles { min-width: 0; justify-content: center; text-align: left; padding: 0; }
@@ -566,7 +566,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 #settingWispInput { border: 1px solid transparent !important; box-sizing: border-box; }
 #settingWispInput[data-saved="true"] { border-color: #58b878 !important; }
 
-/* Controls shrink with their settings card instead of overflowing the viewport. */
+
 .settings-cards-container { min-width: 0; container-type: inline-size; }
 .settings-row-text, .settings-control, .settings-control > div { min-width: 0; }
 .settings-control { flex-shrink: 1; }

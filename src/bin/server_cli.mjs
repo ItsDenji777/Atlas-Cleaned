@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 import http from "node:http";
 import path from "node:path";
@@ -8,11 +7,8 @@ import { server as wisp, logging, extensions } from "@mercuryworkshop/wisp-js/se
 import { createRequire } from "module";
 import { Command } from "commander";
 
-
-
 const package_json = createRequire(import.meta.url)("./../../package.json");
 const version = package_json.version;
-
 
 const program = new Command();
 program
@@ -30,7 +26,6 @@ program
 
 program.parse();
 const opts = program.opts();
-
 
 opts.logging = opts.logging.toUpperCase();
 if (["DEBUG", "INFO", "WARN", "ERROR", "NONE"].includes(opts.logging)) {
@@ -62,7 +57,6 @@ if (opts.options) {
   for  (let [key, value] of Object.entries(opts.options))
     wisp.options[key] = value;
 }
-
 
 const mime_types = {
   "ico": "image/x-icon",

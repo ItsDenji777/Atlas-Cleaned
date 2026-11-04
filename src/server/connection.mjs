@@ -35,7 +35,6 @@ export class ServerStream {
     await this.socket.connect();
     if (this.closed) { await this.socket.close(); return; }
 
-
     this.tcp_to_ws().catch((error) => {
       logging.warn(`(${this.conn.conn_id}) upstream receive failed (${error.code || 'transport'})`);
       this.conn.close_stream(this.stream_id, close_reasons.NetworkError).catch(() => {});
@@ -155,7 +154,6 @@ export class ServerConnection {
       await this.setup_wisp_v2()
     }
 
-
     let continue_packet = new WispPacket({
       type: ContinuePayload.type,
       stream_id: 0,
@@ -190,7 +188,6 @@ export class ServerConnection {
     });
     await this.ws.send(info_packet);
 
-
     let timer;
     let data;
     try {
@@ -211,7 +208,6 @@ export class ServerConnection {
       await this.cleanup();
       throw new HandshakeError();
     }
-
 
     let client_extensions = parse_extensions(packet.payload.extensions, this.wisp_extensions, "client");
     for (let client_ext of client_extensions) {
@@ -234,7 +230,6 @@ export class ServerConnection {
     const overLimit = (options.stream_limit_total !== -1 && existing.length >= options.stream_limit_total) ||
       (options.stream_limit_per_host !== -1 && existing.filter(item => item.socket.hostname === hostname).length >= options.stream_limit_per_host);
     this.streams[stream_id] = stream;
-
 
     (async () => {
       const resolved = {};
@@ -273,7 +268,6 @@ export class ServerConnection {
     let stream = this.streams[packet.stream_id];
 
     if (stream == null && packet.type == DataPayload.type) {
-
 
       logging.debug(`(${this.conn_id}) ignored DATA for a closed stream`);
       return;

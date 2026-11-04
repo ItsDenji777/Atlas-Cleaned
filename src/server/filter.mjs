@@ -6,7 +6,6 @@ import ipaddr from "ipaddr.js";
 
 export class AccessDeniedError extends Error {}
 
-
 function check_port_range(entry, port) {
   return (entry === port) || (entry[0] <= port && entry[1] >= port)
 }
@@ -32,7 +31,6 @@ function check_ip_range(ip, range) {
   return range.includes(ip.range());
 }
 
-
 export function is_ip_blocked(ip_str) {
   if (!ipaddr.isValid(ip_str))
     return false;
@@ -48,7 +46,6 @@ export function is_ip_blocked(ip_str) {
   return false;
 }
 
-
 export async function is_stream_allowed(connection, type, hostname, port, resolved = {}) {
   if (![stream_types.TCP, stream_types.UDP].includes(type) || !Number.isInteger(port) || port < 1 || port > 65535 || !hostname || hostname.length > 253 || /[\s\x00-\x1f]/.test(hostname)) return close_reasons.InvalidInfo;
 
@@ -56,7 +53,6 @@ export async function is_stream_allowed(connection, type, hostname, port, resolv
     return close_reasons.HostBlocked;
   if (!options.allow_udp_streams && type === stream_types.UDP)
     return close_reasons.HostBlocked;
-
 
   if (options.hostname_whitelist) {
     if (check_whitelist(options.hostname_whitelist, (entry) => entry.test(hostname)))
@@ -67,7 +63,6 @@ export async function is_stream_allowed(connection, type, hostname, port, resolv
       return close_reasons.HostBlocked;
   }
 
-
   if (options.port_whitelist) {
     if (check_whitelist(options.port_whitelist, (entry) => check_port_range(entry, port)))
       return close_reasons.HostBlocked;
@@ -76,7 +71,6 @@ export async function is_stream_allowed(connection, type, hostname, port, resolv
     if (check_blacklist(options.port_blacklist, (entry) => check_port_range(entry, port)))
       return close_reasons.HostBlocked;
   }
-
 
   let ip_str = hostname;
   if (ipaddr.isValid(hostname)) {
@@ -93,10 +87,8 @@ export async function is_stream_allowed(connection, type, hostname, port, resolv
     return close_reasons.HostBlocked;
   resolved.address = ip_str;
 
-
   if (!connection)
     return 0;
-
 
   if (options.stream_limit_total !== -1 && Object.keys(connection.streams).length >= options.stream_limit_total)
     return close_reasons.ConnThrottled;
