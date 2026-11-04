@@ -487,8 +487,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
   };
   var isAdOrTracker = function(url) { return (${isAdOrTracker.toString()})(url, targetUrl); };
 
-  
-  
   window.addEventListener('error', function(event) {
     var script = event.target;
     if (script instanceof HTMLScriptElement && isAdOrTracker(unwrapProxyUrl(script.src))) event.stopImmediatePropagation();
@@ -782,7 +780,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     };
   } catch(e) {}
 
-  
   Object.defineProperty(window, '__atlasLinkDestination', {value: function(anchor) { return unwrapProxyUrl(anchor.getAttribute('href') || anchor.getAttribute('data-atlas-href') || ''); }});
   var anchorGet = Element.prototype.getAttribute;
   var anchorSet = Element.prototype.setAttribute;
@@ -1024,7 +1021,7 @@ const mimeTypes = {
 };
 
 async function appHandler(req, res) {
-  const reqUrl = new URL(req.url, `http:
+  const reqUrl = new URL(req.url, `http://${req.headers.host || "localhost:8080"}`);
   const legacyRoute=({'/proxy':'/view','/proxy-raw':'/resource'})[reqUrl.pathname];
   if(legacyRoute)reqUrl.pathname=legacyRoute;
   const isolated = isContentHost(req.headers.host || '', deployment);
@@ -1499,7 +1496,7 @@ async function routeAtlasUpgrade(req, socket, head) {
     defaultRelayUpgrade(req,socket,head); return;
   }
   if (requestUrl.pathname === '/wisp/') {
-    const approvedAlias = deployment.production && deployment.publicHosts.some(host => req.headers.origin === 'https:
+    const approvedAlias = deployment.production && deployment.publicHosts.some(host => req.headers.origin === 'https://' + host);
     if (req.headers.origin && !approvedAlias && req.headers.origin !== (deployment.requestOrigin || 'http://'+req.headers.host)) { socket.destroy(); return; }
     wisp.routeRequest(req, socket, head); return;
   }
@@ -1550,7 +1547,7 @@ async function routeAtlasUpgrade(req, socket, head) {
 
 function requestOrigin(req) {
   if(isContentHost(req.headers.host || '',deployment))return deployment.publicOrigin;
-  return (deployment.publicOrigin ? new URL(deployment.publicOrigin).protocol : 'http:')+'
+  return (deployment.publicOrigin ? new URL(deployment.publicOrigin).protocol : 'http:')+'//'+req.headers.host;
 }
 const handleRequest = (req,res) => requestContext.run({origin:requestOrigin(req)},()=>appHandler(req,res)).catch(error => {
   console.warn('HTTP request failed', error.code || error.name || 'request');

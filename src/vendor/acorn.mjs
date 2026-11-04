@@ -6246,19 +6246,19 @@ pp.readWord = function() {
   return this.finishToken(type, word)
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Acorn is a tiny, fast JavaScript parser written in JavaScript.
+//
+// Acorn was written by Marijn Haverbeke, Ingvar Stepanyan, and
+// various contributors and released under an MIT license.
+//
+// Git repositories for Acorn are available at
+//
+//     http://marijnhaverbeke.nl/git/acorn
+//     https://github.com/acornjs/acorn.git
+//
+// Please use the [github bug tracker][ghbt] to report issues.
+//
+// [ghbt]: https://github.com/acornjs/acorn/issues
 
 
 var version = "8.18.0";
