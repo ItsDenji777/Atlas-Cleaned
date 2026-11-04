@@ -6,6 +6,7 @@
   <script src="/atlas-origin.js"></script>
   <script src="/atlas-url-crypto.js"></script>
   <script src="/atlas-engines.js?v=4"></script>
+  <script src="/atlas-game-ads.js"></script>
   <script src="/atlas-content-filter.js?v=1"></script>
   <script>
     if (window.self !== window.top && new URLSearchParams(window.location.search).get('atlas_blank') === '1') {
@@ -3314,6 +3315,7 @@
         isJustOpened: animateOpen
       };
 
+      tab.disposeGameAds = AtlasGameAds.watch(iframe, () => tab.blockAds !== false);
       tabs.push(tab);
       if (makeActive) activateTab(tabId);
       else renderTabs();
@@ -3413,6 +3415,7 @@
       if (animateClose && typeof handleAtlasSplitClose === 'function' && handleAtlasSplitClose(tabId)) return;
       atlasClosedTabs.push({ url: tab.url, title: tab.title, pinned: Boolean(tab.pinned), muted: Boolean(tab.muted), index });
       if (atlasClosedTabs.length > 30) atlasClosedTabs.shift();
+      tab.disposeGameAds?.();
       AtlasContentFilter.dispose(tab.iframe);
       tab.isClosing = true;
       if (animateClose && tabs.every(t => t.isClosing)) { tab.returnHome = true; switchView('home'); }

@@ -36,7 +36,7 @@ export function deploymentConfig(env = process.env) {
 }
 
 export function isPublicAtlasFile(pathname) {
-  if(['/atlas-content-filter.js','/atlas-blocked.html','/atlas-engines.js','/atlas-scramjet-sw.js','/atlas-ultraviolet-sw.js'].includes(pathname))return true;
+  if(['/atlas-content-filter.js','/atlas-game-ads.js','/atlas-blocked.html','/atlas-engines.js','/atlas-scramjet-sw.js','/atlas-ultraviolet-sw.js'].includes(pathname))return true;
   return /^\/(?:index\.html|proxy-origin\.js|atlas-(?:tooltips\.js|origin\.js|page-storage\.js|url-crypto\.js|ui\.js|ui\.css|browser\.js|sessions\.js|internal\.js|dock\.(?:js|css)|pages\.(?:html|css|js)))$/.test(pathname)
     || (/^\/assets\/[^\\]+\.(?:svg|png|jpe?g|webp|gif|ico|avif|woff2?)$/i.test(pathname)
       && !pathname.split('/').some(segment => segment.startsWith('.')));
