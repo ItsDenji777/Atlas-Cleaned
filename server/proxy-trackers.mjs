@@ -1,4 +1,3 @@
-// Shared by HTML rewriting and the injected resource hooks.
 export function isAdOrTracker(value, baseURL) {
   if (!value) return false;
   let url;
@@ -19,8 +18,6 @@ export function isAdOrTracker(value, baseURL) {
   });
 }
 
-// Remove optional tracker resources before parsing, so failed loads cannot trip
-// a site's global game-startup error handler. Keep unrelated script bodies intact.
 export function stripTrackerTags(html, baseURL) {
   return html.replace(/<(script|iframe)\b([^>]*)>[\s\S]*?<\/\1\s*>/gi, (tag, _name, attrs) => {
     const src = /(?:^|\s)src\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i.exec(attrs);

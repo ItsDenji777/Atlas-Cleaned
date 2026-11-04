@@ -216,7 +216,6 @@ export const close_reasons = {
   NetworkError: 0x03,
   IncompatibleExtensions: 0x04,
 
-
   InvalidInfo: 0x41,
   UnreachableHost: 0x42,
   NoResponse: 0x43,
@@ -225,9 +224,7 @@ export const close_reasons = {
   HostBlocked: 0x48,
   ConnThrottled: 0x49,
 
-
   ClientError: 0x81,
-
 
   AuthBadPassword: 0xc0,
   AuthBadSignature: 0xc1,

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 import http from "node:http";
 import https from "node:https";
@@ -53,10 +52,8 @@ if (deployment.production) {
   wisp.options.stream_limit_per_host = 16;
 }
 
-
 process.on('uncaughtException', error => { console.error('Fatal application exception; restarting',error?.code || error?.name || 'unknown',error?.stack?.split('\n').slice(1,4).join('\n') || ''); process.exit(1); });
 process.on('unhandledRejection', error => { console.error('Unhandled application rejection; restarting', error?.code || error?.name || 'unknown', error?.stack?.split('\n').slice(1,4).join('\n') || ''); process.exit(1); });
-
 
 const wispConnections = new Map();
 const wispConnecting = new Map();
@@ -120,9 +117,6 @@ function getWispConnection(wispUrl,lane=0) {
   return opening;
 }
 
-
-
-
 async function fetchOverWisp(wispUrl, targetUrl, options = {}, redirectCount = 0) {
   return withAtlasFetchSlot(new URL(targetUrl).hostname, (releaseSlot,lane) => fetchOverWispRequest(wispUrl,targetUrl,{...options,releaseSlot,lane},redirectCount));
 }
@@ -146,7 +140,6 @@ async function fetchOverWispRequest(wispUrl, targetUrl, options = {}, redirectCo
     }, timeoutMs);
 
     const onConnected = () => {
-
 
       const pathWithQuery = parsed.pathname + (parsed.search || "");
 
@@ -578,7 +571,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
       }
     }
 
-
     function patchIntegrity(proto) {
       var desc = Object.getOwnPropertyDescriptor(proto, 'integrity');
       if (desc && desc.set) Object.defineProperty(proto, 'integrity', {
@@ -639,7 +631,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     } catch(e) {}
   }
 
-
   function notifyAtlasFrameFocus() {
     try {
       if (typeof window.parent.handleAtlasFramePointer === 'function') {
@@ -652,7 +643,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
   window.addEventListener('pointerdown', notifyAtlasFrameFocus, true);
   document.addEventListener('focusin', notifyAtlasFrameFocus, true);
   var atlasMuted = false;
-
 
   var atlasMediaRefs = new Set(), atlasMediaSeen = new WeakSet(), atlasMediaDesired = new WeakMap();
   var atlasAudioGates = new WeakMap(), atlasAudioGateRefs = new Set();
@@ -676,7 +666,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
   var atlasNativePlay = HTMLMediaElement.prototype.play;
   HTMLMediaElement.prototype.play = function() { trackAtlasMedia(this); return atlasNativePlay.apply(this, arguments); };
   if (window.AudioNode) {
-
 
     var atlasNativeConnect = AudioNode.prototype.connect, atlasNativeDisconnect = AudioNode.prototype.disconnect;
     AudioNode.prototype.connect = function(destination) {
@@ -766,7 +755,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     }).observe(document.head || document.documentElement, { subtree:true, characterData:true, childList:true, attributes:true, attributeFilter:['href','rel','sizes','type','media'] });
   } catch(err) {}
 
-
   try {
     var _origPushState = history.pushState;
     var _origReplaceState = history.replaceState;
@@ -793,7 +781,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
       return _origReplaceState.apply(history, arguments);
     };
   } catch(e) {}
-
 
   // Resolve document-scoped encrypted links without exposing the codec key.
   Object.defineProperty(window, '__atlasLinkDestination', {value: function(anchor) { return unwrapProxyUrl(anchor.getAttribute('href') || anchor.getAttribute('data-atlas-href') || ''); }});
@@ -937,10 +924,8 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     html = stripTrackerTags(html, targetUrl);
   }
 
-
   html = html.replace(/<meta[^>]+http-equiv=["']?Content-Security-Policy["']?[^>]*>/gi, '');
   html = html.replace(/<meta[^>]+http-equiv=["']?X-Frame-Options["']?[^>]*>/gi, '');
-
 
   const transformedAttrs = attrs => attrs.replace(/\s+integrity\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
 
@@ -963,7 +948,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     return `<script${newAttrs !== attrs ? transformedAttrs(newAttrs) : newAttrs}>`;
   });
 
-
   html = html.replace(/<(img|source|audio|video|embed)\b([^>]+)>/gi, (tagMatch, tagName, attrs) => {
     let newAttrs = attrs.replace(/\bsrc=(["'])([^"']+)\1/i, (m, quote, url) => {
       return `src=${quote}${rewriteUrl(url, targetUrl, wispUrl, false, blockAds, blockFingerprint)}${quote}`;
@@ -983,7 +967,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     return `<${tagName}${newAttrs}>`;
   });
 
-
   html = html.replace(/<iframe\b([^>]+)>/gi, (tagMatch, attrs) => {
     const newAttrs = attrs.replace(/\bsrc=(["'])([^"']+)\1/i, (m, quote, url) => {
       return `src=${quote}${rewriteUrl(url, targetUrl, wispUrl, true, blockAds, blockFingerprint)}${quote}`;
@@ -991,9 +974,7 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     return `<iframe${newAttrs}>`;
   });
 
-
   html = html.replace(/<base[^>]*>/gi, '');
-
 
   html = html.replace(/<a\b([^>]+)>/gi, (tagMatch, attrs) => {
     let newAttrs = attrs.replace(/(^|\s)href\s*=\s*(["'])([^"']*)\2/i, (m, space, quote, url) => {
@@ -1007,7 +988,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
     return `<a${newAttrs}>`;
   });
 
-
   html = html.replace(/<form\b([^>]+)>/gi, (tagMatch, attrs) => {
     let newAttrs = attrs.replace(/\baction=(["'])([^"']+)\1/i, (m, quote, url) => {
       return `action=${quote}${rewriteUrl(url, targetUrl, wispUrl, true, blockAds, blockFingerprint)}${quote}`;
@@ -1017,7 +997,6 @@ function rewriteHtmlForProxy(html, targetUrl, wispUrl, blockAds = true, blockFin
   });
 
   const isolationRuntime = '<script src="/atlas-origin.js"></script><script src="/atlas-url-crypto.js"></script><script src="/atlas-page-storage.js"></script>';
-
 
   interceptScript=interceptScript.replace('__ATLAS_PROXY_ADDRESSES__',()=>JSON.stringify([...proxyAddresses]).replace(/</g,'\\u003c'));
   if (/<head[^>]*>/i.test(html)) {
@@ -1043,7 +1022,6 @@ const mimeTypes = {
   "map": "application/json",
   "txt": "text/plain; charset=utf-8"
 };
-
 
 async function appHandler(req, res) {
   const reqUrl = new URL(req.url, `http://${req.headers.host || "localhost:8080"}`);
@@ -1084,7 +1062,6 @@ async function appHandler(req, res) {
     }
   } else if ((isolated || !deployment.proxyOriginTemplate) && !['/atlas-origin.js','/proxy-origin.js','/atlas-url-crypto.js','/atlas-page-storage.js'].includes(reqUrl.pathname)) {
 
-
     try {
       let original;
       if (!deployment.proxyOriginTemplate && req.headers.referer) {
@@ -1114,13 +1091,11 @@ async function appHandler(req, res) {
     return;
   }
 
-
   if (req.method === "OPTIONS" && !isolated) {
     res.writeHead(204);
     res.end();
     return;
   }
-
 
   if (reqUrl.pathname === "/api/suggestions") {
     const q = (reqUrl.searchParams.get("q") || "").trim();
@@ -1165,7 +1140,6 @@ async function appHandler(req, res) {
     return;
   }
 
-
   if (reqUrl.pathname === '/api/clock') {
     res.writeHead(200, { 'Content-Type':'application/json', 'Cache-Control':'no-store' });
     res.end(JSON.stringify({ time:Date.now() }));
@@ -1184,7 +1158,6 @@ async function appHandler(req, res) {
     }));
     return;
   }
-
 
   if (reqUrl.pathname === "/api/test-wisp") {
     const targetWisp = reqUrl.searchParams.get("wisp") || reqUrl.searchParams.get("url") || `ws://localhost:${PORT}/wisp/`;
@@ -1232,7 +1205,6 @@ async function appHandler(req, res) {
     return;
   }
 
-
   if (reqUrl.pathname === "/resource") {
     const rawTarget = reqUrl.searchParams.get("url") || "";
     const targetWisp = reqUrl.searchParams.get("wisp") || `ws://localhost:${PORT}/wisp/`;
@@ -1275,11 +1247,9 @@ async function appHandler(req, res) {
     return;
   }
 
-
   if (reqUrl.pathname === "/view") {
     const rawTarget = reqUrl.searchParams.get("url") || "";
     const targetWisp = reqUrl.searchParams.get("wisp") || `ws://localhost:${PORT}/wisp/`;
-
 
     if (!rawTarget) {
       res.writeHead(400, { "Content-Type": "text/plain" });
@@ -1305,7 +1275,6 @@ async function appHandler(req, res) {
           fetchOpts.headers["Content-Type"] = req.headers["content-type"];
         }
       }
-
 
       const response = await fetchOverWisp(targetWisp, normalized, fetchOpts);
       if (response.headers.location) {
@@ -1474,7 +1443,6 @@ async function appHandler(req, res) {
     return;
   }
 
-
   try {
     const isAppPage = ["/", "/home", "/apps", "/settings"].includes(reqUrl.pathname);
     if (!isAppPage && !isPublicAtlasFile(reqUrl.pathname)) {
@@ -1570,7 +1538,6 @@ async function routeAtlasUpgrade(req, socket, head) {
     await new Promise((resolve,reject)=>{upstream.once('open',()=>{upstream.pause();resolve();});upstream.once('error',reject);upstream.once('close',()=>reject(new Error('Upstream WebSocket closed')));});
     if(closed)return;
 
-
     upstream.pause();req.atlasProtocol=upstream.protocol;
     atlasSocketServer.handleUpgrade(req,socket,head,accepted=>{
       client=accepted;client.on('close',close);client.on('error',close);
@@ -1580,7 +1547,6 @@ async function routeAtlasUpgrade(req, socket, head) {
     });
   } catch { close(); }
 }
-
 
 function requestOrigin(req) {
   if(isContentHost(req.headers.host || '',deployment))return deployment.publicOrigin;
@@ -1603,7 +1569,6 @@ server.listen(PORT, deployment.host, () => {
   console.log(`Local Wisp: ws://localhost:${PORT}/wisp/`);
   console.log(`======================================================\n`);
 });
-
 
 const fallbackServer = http.createServer({maxHeaderSize:1024*1024},handleRequest);
 fallbackServer.on("upgrade", (req, socket, head) => {

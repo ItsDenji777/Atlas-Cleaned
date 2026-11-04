@@ -49,7 +49,6 @@ const webpack_configs = [
   }
 ]
 
-
 let new_configs = [];
 for (let config of webpack_configs) {
   let legacy_config = {

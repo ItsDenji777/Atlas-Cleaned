@@ -112,8 +112,6 @@ function renderAtlasSplitChoices() {
     if (!list) return;
     const blankId = activeSlot < 0 ? null : atlasSplitPair[screen === newTabScreen ? activeSlot : 1 - activeSlot];
     const blank = tabs.find(tab => tab.id === blankId && !tab.isClosing);
-    // Keep outgoing choices rendered while CSS fades back to shortcuts.
-    // The picker is inert outside split view and is rebuilt on the next entry.
     if (!blank?.isNewTab) return;
     const changedPane = list.dataset.choiceTabId !== blankId;
     list.dataset.choiceTabId = blankId;
@@ -215,7 +213,6 @@ function setAtlasSplitRatio(ratio) {
 }
 function renderAtlasSplitTabs() {
 
-
   if (tabList.dataset.atlasSplitHeadersDetached === 'true') { renderAtlasSplitChoices(); return; }
   const ids = atlasSplitPair || [];
   const items = ids.map(id => tabList.querySelector(`.tab-item[data-tab-id="${id}"]`));
@@ -297,7 +294,6 @@ function toggleAtlasSplit() {
   if (!primary) return;
   cancelAtlasSplitAnimation();
 
-
   const primaryHeader = tabList.querySelector(`.tab-item[data-tab-id="${primary.id}"]`);
   const primaryWidth = primaryHeader ? {width:primaryHeader.getBoundingClientRect().width} : null;
   const secondary = createTab('/new-tab', 'New Tab', false, false);
@@ -353,7 +349,6 @@ function animateAtlasSplitHeaders(phase, before, removeBlank, pane) {
   let widths;
   if (phase === 'exit') {
 
-
     const measureBar = tabList.parentNode.cloneNode(true);
     const measure = measureBar.querySelector('.tab-list');
     [measureBar, ...measureBar.querySelectorAll('[id]')].forEach(node => node.removeAttribute('id'));
@@ -403,7 +398,6 @@ function separateAtlasSplitHeaders() {
   atlasSplitGroupElement = null;
   elements.forEach(element => element.classList.remove('atlas-paired-tab','atlas-pair-left','atlas-pair-right','opening'));
 
-
   const after = snapshot.map(({element,children}) => ({rect:element.getBoundingClientRect(), children:children.map(child=>child.element.getBoundingClientRect())}));
   const motion = {duration:280, easing:'cubic-bezier(.4,0,.2,1)', fill:'both'};
   const animate = (element,keyframes) => {
@@ -439,7 +433,6 @@ function animateAtlasPaneGeometry(element, from, to, phase) {
   if (!element?.animate || !from || !to) return;
   element.classList.add('atlas-split-expanding');
 
-
   const frames = [
     { left: `${from.left}px`, width: `${from.width}px` },
     { left: `${to.left}px`, width: `${to.width}px` }
@@ -451,7 +444,6 @@ function animateAtlasSplitEntrance(from) {
   const incoming = atlasPaneElement(atlasSplitPair?.[1]);
   const to = atlasPaneGeometry(incoming);
   if (!from || !to || !atlasSplitDivider.animate) return;
-
 
   const edge = from.left + from.width;
   animateAtlasPaneGeometry(incoming, { left: edge + 10, width: 0 }, to, 'enter');
@@ -518,10 +510,6 @@ function runAtlasSplitTransition(update, phase, pane = 'right', removeBlank = fa
   const reduceMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) { commit(); finish(); return; }
 
-
-
-
-
   if (phase !== 'exit') commit();
   if (phase === 'exit') [viewportContainer, tabList].forEach(container => {
     container.style?.setProperty('--atlas-split-close-opacity', closeOpacity);
@@ -545,7 +533,6 @@ function runAtlasSplitTransition(update, phase, pane = 'right', removeBlank = fa
   if (phase === 'exit') {
     const width = viewportContainer.clientWidth;
     animateAtlasPaneGeometry(retained, before, width > 0 ? { left: 0, width } : null, phase);
-
 
     const exitLeft = pane === 'left' ? -(outgoingGeometry?.width || 0) - 10 : width + 10;
     animateAtlasPaneGeometry(outgoing, outgoingGeometry, outgoingGeometry && { left: exitLeft, width: outgoingGeometry.width }, phase);
@@ -574,7 +561,6 @@ function runAtlasSplitTransition(update, phase, pane = 'right', removeBlank = fa
   const geometryDone = pendingAnimations.length ? Promise.all(pendingAnimations) : null;
   if (geometryDone?.then) {
 
-
     geometryDone.then(complete, () => {});
   } else {
     atlasSplitTimer = setTimeout(complete, 230);
@@ -592,7 +578,6 @@ function exitAtlasSplit(closingId = null) {
       atlasSplitPair = null;
       if (tabs.some(tab => tab.id === target && !tab.isClosing)) activateTab(target);
       else applyAtlasSplitLayout();
-
 
       if (blank && tabs.includes(blank) && !blank.isClosing) closeTab(blank.id, false);
     }

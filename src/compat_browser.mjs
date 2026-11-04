@@ -1,7 +1,5 @@
 
 
-
-
 export const global_this = typeof globalThis === "undefined" ? window : globalThis;
 
 export const WebSocket = global_this.WebSocket;

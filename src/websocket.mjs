@@ -3,7 +3,6 @@ import { WispPacket } from './packet.mjs';
 
 export function get_conn_id() { return compat.crypto.randomUUID().split('-')[0]; }
 
-
 export class AsyncQueue {
   constructor(max_size) {
     this.max_size = max_size;

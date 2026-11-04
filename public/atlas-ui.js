@@ -140,7 +140,6 @@ function hydrateAtlasDropdowns(root = document) {
   });
 }
 
-
 const LEGACY_CLOAK_PRESETS = {
   default: { title: 'Atlas', icon: '/assets/atlas.png' },
   google: { title: 'Google', icon: '/assets/official/google.ico' },
@@ -362,7 +361,6 @@ function handleAtlasKeyboard(e, fromFrame = false) {
   runPanicShortcut(e, fromFrame);
 }
 window.addEventListener('keydown', e => handleAtlasKeyboard(e), true);
-
 
 function animateAtlasContent(element, className = 'view-enter') {
   if (!element) return;

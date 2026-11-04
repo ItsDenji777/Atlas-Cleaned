@@ -29,8 +29,6 @@
       return app.origin;
     }
 
-
-
     if (!/^https?:\/\/(?:[a-z][a-z0-9-]{0,30})?\{site\}\.[^/?#]+\/?$/.test(template || '')) throw new Error('Isolated content origin is not configured');
     const isolated = new URL(template.replace('{site}', hash(url.origin).slice(0,32)));
     if(isolated.username || isolated.password)throw new Error('Invalid content origin template');

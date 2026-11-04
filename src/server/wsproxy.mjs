@@ -15,7 +15,6 @@ export class WSProxyConnection {
   async setup() {
     await this.ws.connect();
 
-
     const resolved = {};
     let err_code = await filter.is_stream_allowed(null, stream_types.TCP, this.hostname, this.port, resolved);
     if (err_code !== 0) {
@@ -24,11 +23,9 @@ export class WSProxyConnection {
       throw new filter.AccessDeniedError();
     }
 
-
     this.socket = new NodeTCPSocket(this.hostname, this.port);
     this.socket.resolved_ip = resolved.address;
     await this.socket.connect();
-
 
     const cleanup = async () => {
       await Promise.allSettled([this.socket.close(), this.ws.close()]);

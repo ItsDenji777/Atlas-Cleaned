@@ -7,7 +7,6 @@ self.addEventListener('fetch',event=>{
     let request=event.request;
     if(request.referrer && !request.referrer.startsWith(self.location.origin+'/engine/ultraviolet/')) {
       request=new Request(request,{referrer:''});
-      // Request cloning clears navigation metadata; engines need it to rewrite HTML.
       for(const name of ['destination','mode'])Object.defineProperty(request,name,{value:event.request[name]});
     }
     const response=await (engine.route(event) ? engine.fetch({request,clientId:event.clientId}) : fetch(event.request));

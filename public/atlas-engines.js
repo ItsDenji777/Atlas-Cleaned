@@ -68,8 +68,6 @@
       }else tab.iframe.src='/engine/'+engine+'/'+AtlasEngineConfig.codec.encode(target);
     } catch(error) {
       if(tab.isClosing||generation!==tab.engineGeneration)return;
-      // The original server renderer works without browser engine scripts or
-      // service workers. Keep the requested engine selected for future retries.
       let fallback;
       try{
         const origin=window.__atlasConfig.publicOrigin||location.origin;

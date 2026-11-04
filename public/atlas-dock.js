@@ -1,5 +1,4 @@
 const atlasDockRoot=document.getElementById('homeBottomDock');
-// Use the device's timezone. Server time corrects the clock without geolocation.
 function atlasDockClockOffset(serverTime, sentAt, roundTrip) {
   return serverTime - (sentAt + roundTrip / 2);
 }

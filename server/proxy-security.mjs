@@ -58,7 +58,6 @@ export function upstreamHeaders(req, target, config) {
     } else if(upstreamOrigins.has(referer.origin)) headers.Referer=upstreamOrigins.get(referer.origin)+'/';
   } catch {                                          }
 
-
   if(headers.Origin && headers.Origin!==new URL(target).origin && !['GET','HEAD','OPTIONS'].includes(req.method)) delete headers.cookie;
   return headers;
 }

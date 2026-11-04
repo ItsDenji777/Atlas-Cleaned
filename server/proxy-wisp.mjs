@@ -1,9 +1,6 @@
 import {Duplex} from 'node:stream';
 import {close_reasons} from '../src/packet.mjs';
 
-
-
-
 export function createWispDuplex(stream) {
   let remoteEnded=false;
   let timer;
@@ -19,7 +16,6 @@ export function createWispDuplex(stream) {
     },
     destroy(error,callback){clearTimeout(timer);try{stream.close();}catch{}callback(error);}
   });
-
 
   socket.setKeepAlive=socket.setNoDelay=socket.ref=socket.unref=()=>socket;
   socket.timeout=0;

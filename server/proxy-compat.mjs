@@ -1,16 +1,11 @@
 import { parse, tokenizer } from '../src/vendor/acorn.mjs';
 
-
-
 export function rewriteLocations(source, rewriteUrl, sourceUrl) {
   if (!/\blocation\b/.test(source) && (!rewriteUrl || !/\b(?:import|export)\b/.test(source))) return source;
   const edits = [], recent = [], globals = new Set(['window','self','document','globalThis']);
   try {
     for (const token of tokenizer(source,{ecmaVersion:'latest',sourceType:'module',allowHashBang:true})) {
       const before = recent.at(-1), object = recent.at(-2), prefix = recent.at(-3);
-      // Worker scripts do not run the document's virtual-location bootstrap.
-      // Keep native location available for member reads in those realms, while
-      // preserving virtual-location setters for document navigation.
       if (['.','?.'].includes(token.type.label) && before?.value==='location' && ['.','?.'].includes(object?.type.label)
           && prefix?.type.label==='name' && globals.has(prefix.value) && !['.','?.'].includes(recent.at(-4)?.type.label)) {
         const edit=edits.at(-1);
@@ -32,8 +27,6 @@ export function rewriteLocations(source, rewriteUrl, sourceUrl) {
       recent.push(token); if(recent.length>4) recent.shift();
     }
   } catch { return source; }
-  // Routers commonly pass window as a parameter and read alias.location.
-  // Rewrite those reads by identity, leaving application data and write targets alone.
   try {
     const root=parse(source,{ecmaVersion:'latest',sourceType:'module',allowHashBang:true,allowReturnOutsideFunction:true});
     const pending=[{node:root,parent:null}];
@@ -52,7 +45,7 @@ export function rewriteLocations(source, rewriteUrl, sourceUrl) {
         else if(value?.type)pending.push({node:value,parent:node});
       }
     }
-  } catch { /* Retain token-based rewrites for scripts outside module grammar. */ }
+  } catch { }
   edits.sort((a,b)=>a.start-b.start);
   const pieces = []; let cursor = 0;
   edits.forEach(edit=>{pieces.push(source.slice(cursor,edit.start),edit.text);cursor=edit.end;});

@@ -1,6 +1,5 @@
 import {createGunzip,createInflate,createBrotliDecompress} from 'node:zlib';
 
-
 export function decodeResponse(response) {
   const factories={gzip:createGunzip,'x-gzip':createGunzip,deflate:createInflate,br:createBrotliDecompress};
   const encodings=String(response.headers['content-encoding'] || '').toLowerCase().split(',').map(value=>value.trim()).filter(value=>value && value!=='identity');

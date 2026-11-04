@@ -2,8 +2,6 @@ import http from 'node:http';
 import tls from 'node:tls';
 import {createWispDuplex} from './proxy-wisp.mjs';
 
-
-
 export function createWispAgent(getConnection,{secure=false,ca,idleTimeout=10000}={}) {
   const sessions=new Map();
   const agent=new http.Agent({keepAlive:true,maxSockets:8,maxTotalSockets:16,maxFreeSockets:2,timeout:idleTimeout,scheduling:'lifo'});
