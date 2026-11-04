@@ -3431,7 +3431,7 @@
     }
     function navigateTab(tabId, rawInput) {
       const requested = (rawInput || "").trim();
-      const input = /^atlas:\/\/assistant\/?$/i.test(requested) ? "atlas://new" : requested;
+      const input = /^atlas:\/\/assistant\/?$/i.test(requested) ? "atlas:
       if (!input) return;
 
       const tab = tabs.find(t => t.id === tabId);
@@ -3441,7 +3441,7 @@
       tab.contentBlocked = false;
       tab.iframe.style.visibility = '';
 
-      if (atlasInternalPage(input) && tab.url === 'atlas://' + atlasInternalPage(input) && (tab.isNewTab || tab.iframe.getAttribute('src') === '/atlas-pages.html?page=' + atlasInternalPage(input))) { activateTab(tabId); return; }
+      if (atlasInternalPage(input) && tab.url === 'atlas:
 
       if (isNewTabUrl(input)) {
         tab.animateInternal = true;
@@ -4181,7 +4181,7 @@
       }
 
       let finalUrl = rawUrl;
-      if (!finalUrl.startsWith("http://") && !finalUrl.startsWith("https://")) {
+      if (!finalUrl.startsWith("http:
         finalUrl = "https://" + finalUrl;
       }
 
